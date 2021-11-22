@@ -12,7 +12,15 @@ steam_sizes = [
     (1438, 810),
     (600, 900),
     (3840, 1240),
-    (1280, 720)
+    (1280, 720),
+    (184, 69),
+    (32, 32),
+    (444, 208),
+    (184, 184),
+    (16, 16),
+    (24, 24),
+    (64, 64),
+    (96, 96)
 ]
 kindle_fire_sizes = [
     (512, 512),
@@ -59,4 +67,7 @@ for image_file in os.listdir("."):
                 image_instance = Image.open(image_file)
                 file_name, file_ext = os.path.splitext(image_file)
                 new_image = image_instance.resize(image_size_req)
-                new_image.save("{}{}x{}.{}".format(file_name, image_size_req[0], image_size_req[1], file_ext))
+                new_image.load()
+                background = Image.new("RGB", new_image.size, (255, 2555, 255))
+                background.paste(new_image, mask=new_image.split()[3])
+                new_image.save("{}{}x{}.{}".format(file_name, image_size_req[0], image_size_req[1], file_ext, quality=80))
