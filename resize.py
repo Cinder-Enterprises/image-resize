@@ -39,7 +39,9 @@ apple_boot_sizes = [
     (1536, 2048),
     (2048, 1536),
     (2208, 1242),
-    (2436, 1125)
+    (2436, 1125),
+    (2688, 1242),
+    (2732, 2048)
 ]
 apple_icon_sizes = [
     (1024, 1024),
@@ -61,7 +63,7 @@ apple_icon_sizes = [
 all_stores = [steam_sizes, kindle_fire_sizes, apple_boot_sizes, apple_icon_sizes]
 
 for image_file in os.listdir("."):
-    if image_file.endswith('.png'):
+    if image_file.endswith('.PNG'):
         for store_size in all_stores:
             for image_size_req in store_size:
                 image_instance = Image.open(image_file)
