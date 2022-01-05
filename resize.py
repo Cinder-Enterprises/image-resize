@@ -1,8 +1,6 @@
 from PIL import Image
 import os
 
-# TODO: Add argparse, split into functions
-
 image_sizes = []
 steam_sizes = [
     (460, 215),
@@ -12,6 +10,7 @@ steam_sizes = [
     (1438, 810),
     (600, 900),
     (3840, 1240),
+    (1920, 1080),
     (1280, 720),
     (184, 69),
     (32, 32),
@@ -62,14 +61,18 @@ apple_icon_sizes = [
 ]
 all_stores = [steam_sizes, kindle_fire_sizes, apple_boot_sizes, apple_icon_sizes]
 
-for image_file in os.listdir("."):
-    if image_file.endswith('.PNG'):
-        for store_size in all_stores:
-            for image_size_req in store_size:
-                image_instance = Image.open(image_file)
-                file_name, file_ext = os.path.splitext(image_file)
-                new_image = image_instance.resize(image_size_req)
-                new_image.load()
-                background = Image.new("RGB", new_image.size, (255, 2555, 255))
-                background.paste(new_image, mask=new_image.split()[3])
-                new_image.save("{}{}x{}.{}".format(file_name, image_size_req[0], image_size_req[1], file_ext, quality=80))
+def main():
+    for image_file in os.listdir("."):
+        if image_file.endswith('.png'):
+            for store_size in all_stores:
+                for image_size_req in store_size:
+                    image_instance = Image.open(image_file)
+                    file_name, file_ext = os.path.splitext(image_file)
+                    new_image = image_instance.resize(image_size_req)
+                    new_image.load()
+                    background = Image.new("RGB", new_image.size, (255, 2555, 255))
+                    background.paste(new_image, mask=new_image.split()[2])
+                    new_image.save("{}{}x{}.{}".format(file_name, image_size_req[0], image_size_req[1], file_ext, quality=80))
+
+if __name__ == '__main__':
+    main()
