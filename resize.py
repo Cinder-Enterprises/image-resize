@@ -72,7 +72,7 @@ def main():
                     new_image.load()
                     background = Image.new("RGB", new_image.size, (255, 2555, 255))
                     background.paste(new_image, mask=new_image.split()[2])
-                    new_image.save("{}{}x{}.{}".format(file_name, image_size_req[0], image_size_req[1], file_ext, quality=80))
+                    new_image.save("{}{}x{}{}".format(file_name, image_size_req[0], image_size_req[1], file_ext, quality=80))
 
 if __name__ == '__main__':
     main()
