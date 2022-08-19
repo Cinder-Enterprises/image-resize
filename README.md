@@ -1,7 +1,7 @@
 
 
 # Description
-Small script to generate the necassary images needed for the different digital stores (Amazon Fire, Apple App Store, Google Play, Steam)
+A small script to generate the necassery images needed for the different digital stores (Amazon Fire, Apple App Store, Google Play, Steam)
 
 ## Usage
 1. Install the requirements needed: `pip install -r requirements.txt`
