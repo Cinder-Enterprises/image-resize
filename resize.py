@@ -59,7 +59,13 @@ apple_icon_sizes = [
     (167, 167),
     (180, 180)
 ]
-all_stores = [steam_sizes, kindle_fire_sizes, apple_boot_sizes, apple_icon_sizes]
+apple_watchos_sizes = [
+    (410, 502),
+    (396, 484),
+    (368, 448),
+    (312, 390)
+]
+all_stores = [steam_sizes, kindle_fire_sizes, apple_boot_sizes, apple_icon_sizes, apple_watchos_sizes]
 
 def main():
     for image_file in os.listdir("."):
