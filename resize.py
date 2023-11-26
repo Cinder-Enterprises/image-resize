@@ -65,20 +65,29 @@ apple_watchos_sizes = [
     (368, 448),
     (312, 390)
 ]
-all_stores = [steam_sizes, kindle_fire_sizes, apple_boot_sizes, apple_icon_sizes, apple_watchos_sizes]
+watch_screenshots = [
+    (410, 502),
+    (396, 484),
+    (368, 448),
+    (312, 390)
+]
+all_stores = [apple_icon_sizes, kindle_fire_sizes, apple_boot_sizes, steam_sizes, kindle_fire_sizes, apple_boot_sizes, apple_icon_sizes, apple_watchos_sizes]
+image_file_formats = ['png', 'PNG', 'jpg', 'jpeg']
 
 def main():
     for image_file in os.listdir("."):
-        if image_file.endswith('.png'):
-            for store_size in all_stores:
-                for image_size_req in store_size:
-                    image_instance = Image.open(image_file)
-                    file_name, file_ext = os.path.splitext(image_file)
-                    new_image = image_instance.resize(image_size_req)
-                    new_image.load()
-                    background = Image.new("RGB", new_image.size, (255, 2555, 255))
-                    background.paste(new_image, mask=new_image.split()[2])
-                    new_image.save("{}{}x{}{}".format(file_name, image_size_req[0], image_size_req[1], file_ext, quality=80))
+        for iformat in image_file_formats:
+            if image_file.endswith(iformat):
+                for store_size in all_stores:
+                    for image_size_req in store_size:
+                        image_instance = Image.open(image_file)
+                        file_name, file_ext = os.path.splitext(image_file)
+                        new_image = image_instance.resize(image_size_req)
+                        new_image.load()
+                        print("Creating Image: " + file_name)
+                        background = Image.new("RGB", new_image.size, (255, 2555, 255))
+                        background.paste(new_image, mask=new_image.split()[2])
+                        new_image.save("{}{}x{}{}".format(file_name, image_size_req[0], image_size_req[1], file_ext, quality=80))
 
 if __name__ == '__main__':
     main()
